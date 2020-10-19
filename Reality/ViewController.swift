@@ -17,25 +17,38 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//
-        let arConfiguration = ARWorldTrackingConfiguration()
-        arConfiguration.planeDetection = [.vertical, .horizontal]
-        arView.session.run(arConfiguration)
-        self.setupARView()
+        self.arView.session.delegate = self
+        self.arView.debugOptions = [.showWorldOrigin, .showAnchorOrigins]
+//        let arConfiguration = ARWorldTrackingConfiguration()
+//        arConfiguration.planeDetection = [.vertical, .horizontal]
+//        self.arView.session.run(arConfiguration)
         self.setupStackView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // Load the "Box" scene from the "Experience" Reality File
         
     }
     
     @objc func discover() {
-//        self.setupARView()
-        self.loadBox()
+        self.setupCoachingView()
+        self.loadWall()
 //        self.loadWall()
         
+    }
+    
+    func loadPict() {
+        Experience.loadPictAsync(completion: { [weak self](result) in
+            switch result {
+            case .success(let wall):
+                guard let self = self else { return }
+                self.arView.scene.anchors.append(wall)
+            case .failure(let error):
+                print("Unable to load the game with error: \(error.localizedDescription)")
+            }
+            
+            
+        })
     }
     
     func loadWall() {
@@ -43,15 +56,6 @@ class ViewController: UIViewController {
             switch result {
             case .success(let wall):
                 guard let self = self else { return }
-                
-//                if self.gameAnchor == nil {
-//                    self.gameAnchor = game
-//                    self.observer?.gameControllerContentDidLoad(self)
-//                }
-//
-//                if case let .waitingForContent(nextState) = self.currentState {
-//                    self.transition(to: nextState)
-//                }
                 self.arView.scene.anchors.append(wall)
             case .failure(let error):
                 print("Unable to load the game with error: \(error.localizedDescription)")
@@ -62,14 +66,20 @@ class ViewController: UIViewController {
     }
     
     func loadBox() {
-        let boxAnchor = try! Experience.loadBox()
-        let videoAnchor = self.videoAnchor()
-    
-        // Add the box anchor to the scene
-        arView.scene.anchors.append(boxAnchor)
-        if let video = videoAnchor {
-            debugPrint(video)
-            arView.scene.anchors.append(video)
+        // Load the "Box" scene from the "Experience" Reality File
+        Experience.loadBoxAsync { [weak self](result) in
+            switch result {
+            case .success(let box):
+                guard let self = self else { return }
+                self.arView.scene.anchors.append(box)
+                let videoAnchor = self.videoAnchor()
+                if let video = videoAnchor {
+                    debugPrint(video)
+                    self.arView.scene.anchors.append(video)
+                }
+            case .failure(let error):
+                print("Unable to load the game with error: \(error.localizedDescription)")
+            }
         }
     }
     
@@ -96,14 +106,12 @@ class ViewController: UIViewController {
         return anchor
     }
     
-    func setupARView() {
+    func setupCoachingView() {
         coachingOverlay.activatesAutomatically = true
-        coachingOverlay.setActive(true, animated: true)
+//        coachingOverlay.setActive(true, animated: true)
         coachingOverlay.goal = .anyPlane
         coachingOverlay.session = arView.session
         coachingOverlay.delegate = self
-        self.arView.session.delegate = self
-        arView.debugOptions = [.showWorldOrigin, .showAnchorOrigins]
     }
     
     func setupStackView() {
