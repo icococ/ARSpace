@@ -15,40 +15,35 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var coachingOverlay: ARCoachingOverlayView!
     
+    var defaultConfiguration: ARWorldTrackingConfiguration {
+        let configuration = ARWorldTrackingConfiguration()
+        configuration.planeDetection = [.vertical, .horizontal]
+        configuration.environmentTexturing = .automatic
+        return configuration
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.arView.session.delegate = self
+        let arConfiguration = ARWorldTrackingConfiguration()
+        arConfiguration.planeDetection = [.vertical, .horizontal]
         self.arView.debugOptions = [.showWorldOrigin, .showAnchorOrigins]
-//        let arConfiguration = ARWorldTrackingConfiguration()
-//        arConfiguration.planeDetection = [.vertical, .horizontal]
-//        self.arView.session.run(arConfiguration)
+        self.arView.session.delegate = self
+        self.arView.session.run(arConfiguration)
+        self.setupCoachingView()
         self.setupStackView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        // Load the "Box" scene from the "Experience" Reality File
     }
     
     @objc func discover() {
-        self.setupCoachingView()
-        self.loadWall()
-//        self.loadWall()
-        
+        self.loadBox()
     }
     
-    func loadPict() {
-        Experience.loadPictAsync(completion: { [weak self](result) in
-            switch result {
-            case .success(let wall):
-                guard let self = self else { return }
-                self.arView.scene.anchors.append(wall)
-            case .failure(let error):
-                print("Unable to load the game with error: \(error.localizedDescription)")
-            }
-            
-            
-        })
+    @objc func placeVideoAnchor() {
+        self.placeVideo()
     }
     
     func loadWall() {
@@ -60,30 +55,40 @@ class ViewController: UIViewController {
             case .failure(let error):
                 print("Unable to load the game with error: \(error.localizedDescription)")
             }
-            
-            
         })
     }
     
     func loadBox() {
-        // Load the "Box" scene from the "Experience" Reality File
-        Experience.loadBoxAsync { [weak self](result) in
-            switch result {
-            case .success(let box):
-                guard let self = self else { return }
-                self.arView.scene.anchors.append(box)
-                let videoAnchor = self.videoAnchor()
-                if let video = videoAnchor {
-                    debugPrint(video)
-                    self.arView.scene.anchors.append(video)
-                }
-            case .failure(let error):
-                print("Unable to load the game with error: \(error.localizedDescription)")
-            }
+        let boxAnchor = try! Experience.loadBox()
+        let videoAnchor = self.videoAnchor()
+    
+        // Add the box anchor to the scene
+        arView.scene.anchors.append(boxAnchor)
+        if let video = videoAnchor {
+            debugPrint(video)
+//            arView.scene.anchors.append(video)
         }
     }
     
-    func videoAnchor() -> AnchorEntity? {
+    func placeVideo() {
+        Experience.loadVideoAsync(completion: { [weak self](result) in
+            switch result {
+            case .success(let video):
+                guard let self = self else { return }
+                self.arView.scene.anchors.append(video)
+                
+                if let videoE = self.videoAnchor() {
+                    video.addChild(videoE)
+                }
+                debugPrint("video", video.anchoring)
+                
+            case .failure(let error):
+                print("Unable to load the game with error: \(error.localizedDescription)")
+            }
+        })
+    }
+    
+    func videoAnchor() -> ModelEntity? {
         guard let pathToVideo = Bundle.main.path(forResource: "video", ofType: "mp4") else {
             return nil
         }
@@ -92,37 +97,37 @@ class ViewController: UIViewController {
         let avPlayer = AVPlayer(url: videoURL)
         avPlayer.play()
         // ENTITY
-        let mesh = MeshResource.generatePlane(width: 0.96, depth: 0.54)    // 16:9 video
+//        let mesh = MeshResource.generatePlane(width: 0.96, depth: 0.54)    // 16:9 video
+        let mesh = MeshResource.generateBox(width: 0.8, height: 0.45, depth: 0.02)
+        
         let material = VideoMaterial(avPlayer: avPlayer)
         let planeEntity = ModelEntity(mesh: mesh, materials: [material])
-        planeEntity.transform.rotation = simd_quatf(angle: Float.pi / 180 * 90, axis: [1, 0, 0])
+//        planeEntity.transform.rotation = simd_quatf(angle: Float.pi / 180 * 90, axis: [1, 0, 0])
         
 //        let anchor = AnchorEntity(.plane(.vertical,
 //                                    classification: .table,
 //                                     minimumBounds: [0.3, 0.3]))
-        let anchor = AnchorEntity(world: [0, 0, -2])
-        anchor.addChild(planeEntity)
+//        let anchor = AnchorEntity(world: [0, 0, -2])
+        
+        
+//        anchor.addChild(planeEntity)
 //        anchor.transform.rotation = simd_quatf(angle: Float.pi / 180 * 90, axis: [1, 0, 0])
-        return anchor
+        return planeEntity
     }
     
-    func setupCoachingView() {
-        coachingOverlay.activatesAutomatically = true
-//        coachingOverlay.setActive(true, animated: true)
-        coachingOverlay.goal = .anyPlane
-        coachingOverlay.session = arView.session
-        coachingOverlay.delegate = self
-    }
-    
-    func setupStackView() {
-        stackView.addArrangedSubview(saveButton)
-        stackView.addArrangedSubview(loadButton)
-        stackView.addArrangedSubview(discoverButton)
-        self.arView.addSubview(stackView)
-        let centerX = stackView.centerXAnchor.constraint(equalTo: self.arView.centerXAnchor)
-        let bottom = stackView.bottomAnchor.constraint(equalTo: self.arView.safeAreaLayoutGuide.bottomAnchor, constant: -50)
-        NSLayoutConstraint.activate([centerX, bottom])
-    }
+    // MARK: - Persistence: Saving and Loading
+    lazy var mapSaveURL: URL = {
+        do {
+            return try FileManager.default
+                .url(for: .documentDirectory,
+                     in: .userDomainMask,
+                     appropriateFor: nil,
+                     create: true)
+                .appendingPathComponent("map.arexperience")
+        } catch {
+            fatalError("Can't get file save URL: \(error.localizedDescription)")
+        }
+    }()
     
     // Called opportunistically to verify that map data can be loaded from filesystem.
     var mapDataFromFile: Data? {
@@ -155,20 +160,68 @@ class ViewController: UIViewController {
         }
     }
     
-    // MARK: - Persistence: Saving and Loading
-    lazy var mapSaveURL: URL = {
-        do {
-            return try FileManager.default
-                .url(for: .documentDirectory,
-                     in: .userDomainMask,
-                     appropriateFor: nil,
-                     create: true)
-                .appendingPathComponent("map.arexperience")
-        } catch {
-            fatalError("Can't get file save URL: \(error.localizedDescription)")
-        }
-    }()
     
+    // - Tag: RunWithWorldMap
+    @IBAction func loadExperience(_ button: UIButton) {
+        /// - Tag: ReadWorldMap
+        let worldMap: ARWorldMap = {
+            guard let data = mapDataFromFile
+                else { fatalError("Map data should already be verified to exist before Load button is enabled.") }
+            do {
+                guard let worldMap = try NSKeyedUnarchiver.unarchivedObject(ofClass: ARWorldMap.self, from: data)
+                    else { fatalError("No ARWorldMap in archive.") }
+                return worldMap
+            } catch {
+                fatalError("Can't unarchive ARWorldMap from file data: \(error)")
+            }
+        }()
+        
+        // Display the snapshot image stored in the world map to aid user in relocalizing.
+        if let snapshotData = worldMap.snapshotAnchor?.imageData,
+            let snapshot = UIImage(data: snapshotData) {
+//            self.snapshotThumbnail.image = snapshot
+        } else {
+            print("No snapshot image in world map")
+        }
+        // Remove the snapshot anchor from the world map since we do not need it in the scene.
+        worldMap.anchors.removeAll(where: { $0 is SnapshotAnchor })
+        
+//        let configuration = self.defaultConfiguration // this app's standard world tracking settings
+//        configuration.initialWorldMap = worldMap
+        
+        let arConfiguration = ARWorldTrackingConfiguration()
+        arConfiguration.planeDetection = [.vertical, .horizontal]
+        arConfiguration.initialWorldMap = worldMap
+        self.arView.session.run(arConfiguration, options: [.resetTracking, .removeExistingAnchors])
+//        sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+//
+//        isRelocalizingMap = true
+//        virtualObjectAnchor = nil
+    }
+    
+    @objc func resetExperience() {
+        self.arView.session.run(defaultConfiguration, options: [.resetTracking, .removeExistingAnchors])
+    }
+    
+    func setupCoachingView() {
+        coachingOverlay.activatesAutomatically = true
+        coachingOverlay.setActive(true, animated: true)
+        coachingOverlay.goal = .anyPlane
+        coachingOverlay.session = arView.session
+        coachingOverlay.delegate = self
+    }
+    
+    func setupStackView() {
+        stackView.addArrangedSubview(saveButton)
+        stackView.addArrangedSubview(loadButton)
+        stackView.addArrangedSubview(resetButton)
+        stackView.addArrangedSubview(discoverButton)
+        stackView.addArrangedSubview(placeVideoButton)
+        self.arView.addSubview(stackView)
+        let centerX = stackView.centerXAnchor.constraint(equalTo: self.arView.centerXAnchor)
+        let bottom = stackView.bottomAnchor.constraint(equalTo: self.arView.safeAreaLayoutGuide.bottomAnchor, constant: -50)
+        NSLayoutConstraint.activate([centerX, bottom])
+    }
     
     lazy var stackView: UIStackView = {
         let stack = UIStackView()
@@ -178,6 +231,22 @@ class ViewController: UIViewController {
         stack.spacing = 10
         stack.axis = .horizontal
         return stack
+    }()
+    
+    private lazy var placeVideoButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Video", for: [.normal])
+        button.addTarget(self, action: #selector(placeVideoAnchor), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var resetButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Reset", for: [.normal])
+        button.addTarget(self, action: #selector(resetExperience), for: .touchUpInside)
+        return button
     }()
     
     private lazy var saveButton: UIButton = {
@@ -192,7 +261,7 @@ class ViewController: UIViewController {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Load", for: [.normal])
-        button.addTarget(self, action: #selector(saveExperience), for: .touchUpInside)
+        button.addTarget(self, action: #selector(loadExperience(_:)), for: .touchUpInside)
         return button
     }()
     
@@ -203,8 +272,6 @@ class ViewController: UIViewController {
         button.addTarget(self, action: #selector(discover), for: .touchUpInside)
         return button
     }()
-    
-    
 }
 
 extension ViewController: ARCoachingOverlayViewDelegate {
@@ -212,7 +279,18 @@ extension ViewController: ARCoachingOverlayViewDelegate {
 }
 
 extension ViewController: ARSessionDelegate {
+    
+    func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
+//        session.add(anchor: anchors.first!)
+//        arView.scene.addAnchor(try! Experience.loadBox())
+//        anchors.first?.identifier
+    }
+    
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
-        debugPrint(session)
+//        debugPrint(session)
+    }
+    
+    func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
+//        updateSessionInfoLabel(for: session.currentFrame!, trackingState: camera.trackingState)
     }
 }
