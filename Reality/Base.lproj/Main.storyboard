@@ -17,27 +17,43 @@
                         <subviews>
                             <view opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WcU-RA-K7q" customClass="ARCoachingOverlayView">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="L7r-F7-bs4">
+                                        <rect key="frame" x="37" y="687" width="105" height="140"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="L7r-F7-bs4" secondAttribute="height" multiplier="3:4" id="QWX-jx-uJ3"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
                                 <viewLayoutGuide key="safeArea" id="rbx-YU-60J"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="rbx-YU-60J" firstAttribute="bottom" secondItem="L7r-F7-bs4" secondAttribute="bottom" constant="35" id="Nte-Kq-dAe"/>
+                                    <constraint firstItem="L7r-F7-bs4" firstAttribute="leading" secondItem="rbx-YU-60J" secondAttribute="leading" constant="37" id="Pcv-RB-dr8"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="L7r-F7-bs4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="37" id="Ajx-A5-AW5"/>
+                            <constraint firstItem="L7r-F7-bs4" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" multiplier="0.253623" id="XWu-Fl-19r"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="WcU-RA-K7q" secondAttribute="trailing" id="aNg-nu-yQr"/>
                             <constraint firstItem="WcU-RA-K7q" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bGV-OW-NGV"/>
                             <constraint firstAttribute="bottom" secondItem="WcU-RA-K7q" secondAttribute="bottom" id="iat-kA-bJu"/>
                             <constraint firstItem="WcU-RA-K7q" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="kqn-Dr-Xwh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="L7r-F7-bs4" secondAttribute="bottom" constant="35" id="mVB-IK-Kbn"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="arView" destination="8bC-Xf-vdC" id="TPV-4x-avp"/>
                         <outlet property="coachingOverlay" destination="WcU-RA-K7q" id="mdA-mA-YKV"/>
+                        <outlet property="snapshotImage" destination="L7r-F7-bs4" id="Mng-t6-xbr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="388" y="123"/>
+            <point key="canvasLocation" x="386.95652173913044" y="122.54464285714285"/>
         </scene>
     </scenes>
 </document>
