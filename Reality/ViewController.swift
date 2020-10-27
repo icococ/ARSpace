@@ -26,7 +26,8 @@ class ViewController: UIViewController {
     }
     
     var eventStreams = [AnyCancellable]()
-    
+    var scene: String?
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         let arConfiguration = ARWorldTrackingConfiguration()
@@ -36,7 +37,8 @@ class ViewController: UIViewController {
         self.arView.session.run(arConfiguration)
         self.arView.scene.subscribe(to: SceneEvents.AnchoredStateChanged.self) { (event) in
             if event.isAnchored, let id = event.anchor.anchorIdentifier {
-                debugPrint("subscribe_event", event, id, event.anchor)
+                self.anchorMap[id] = event.anchor.name
+                debugPrint("subscribe_event", event.anchor.name)
             }
         }.store(in: &eventStreams)
         self.setupCoachingView()
@@ -60,24 +62,13 @@ class ViewController: UIViewController {
         self.placeVideo()
     }
     
-    func cacheAnchor() {
-        let lastIndex = self.arView.scene.anchors.count
-        if (lastIndex > 0) {
-            let lastAnchor = self.arView.scene.anchors[lastIndex]
-            let lastAnchorID = lastAnchor.anchorIdentifier
-            
-            
-        }
-        
-    }
-    
     func loadDev() {
         Experience.loadDevAsync(completion: { [weak self](result) in
             switch result {
             case .success(let dev):
                 guard let self = self else { return }
+//                self.anchorType = "dev"
                 self.arView.scene.anchors.append(dev)
-                
             case .failure(let error):
                 print("Unable to load the game with error: \(error.localizedDescription)")
             }
@@ -89,6 +80,7 @@ class ViewController: UIViewController {
             switch result {
             case .success(let wall):
                 guard let self = self else { return }
+    
                 self.arView.scene.anchors.append(wall)
             case .failure(let error):
                 print("Unable to load the game with error: \(error.localizedDescription)")
@@ -101,6 +93,8 @@ class ViewController: UIViewController {
             switch result {
             case .success(let box):
                 guard let self = self else { return }
+//                box.name = "bxo"
+//                self.anchorType = "box"
                 self.arView.scene.anchors.append(box)
             case .failure(let error):
                 print("Unable to load the game with error: \(error.localizedDescription)")
@@ -108,23 +102,12 @@ class ViewController: UIViewController {
         })
     }
     
-    func loadBox() {
-        let boxAnchor = try! Experience.loadBox()
-        let videoAnchor = self.videoAnchor()
-    
-        // Add the box anchor to the scene
-        arView.scene.anchors.append(boxAnchor)
-        if let video = videoAnchor {
-            debugPrint(video)
-//            arView.scene.anchors.append(video)
-        }
-    }
-    
     func placeVideo() {
         Experience.loadVideoAsync(completion: { [weak self](result) in
             switch result {
             case .success(let video):
                 guard let self = self else { return }
+//                self.anchorType = "video"
                 self.arView.scene.anchors.append(video)
                 if let videoE = self.videoAnchor() {
                     video.addChild(videoE)
@@ -151,14 +134,12 @@ class ViewController: UIViewController {
         
         let material = VideoMaterial(avPlayer: avPlayer)
         let planeEntity = ModelEntity(mesh: mesh, materials: [material])
-//        planeEntity.transform.rotation = simd_quatf(angle: Float.pi / 180 * 90, axis: [1, 0, 0])
         
+//        planeEntity.transform.rotation = simd_quatf(angle: Float.pi / 180 * 90, axis: [1, 0, 0])
 //        let anchor = AnchorEntity(.plane(.vertical,
 //                                    classification: .table,
 //                                     minimumBounds: [0.3, 0.3]))
 //        let anchor = AnchorEntity(world: [0, 0, -2])
-        
-        
 //        anchor.addChild(planeEntity)
 //        anchor.transform.rotation = simd_quatf(angle: Float.pi / 180 * 90, axis: [1, 0, 0])
         return planeEntity
@@ -190,19 +171,16 @@ class ViewController: UIViewController {
                 self.showAlert(title: "Can't get current world map", message: error!.localizedDescription);
                 return
             }
-            
             // Add a snapshot image indicating where the map was captured.
             guard let snapshotAnchor = SnapshotAnchor(capturing: self.arView)
                 else { fatalError("Can't take snapshot") }
             map.anchors.append(snapshotAnchor)
-            
             do {
                 let data = try NSKeyedArchiver.archivedData(withRootObject: map, requiringSecureCoding: true)
                 try data.write(to: self.mapSaveURL, options: [.atomic])
-//                DispatchQueue.main.async {
-////                    self.loadExperienceButton.isHidden = false
-////                    self.loadExperienceButton.isEnabled = true
-//                }
+                DispatchQueue.main.async {
+                    self.loadButton.isEnabled = true
+                }
             } catch {
                 fatalError("Can't save map: \(error.localizedDescription)")
             }
@@ -241,13 +219,10 @@ class ViewController: UIViewController {
         arConfiguration.planeDetection = [.vertical, .horizontal]
         arConfiguration.initialWorldMap = worldMap
         self.arView.session.run(arConfiguration, options: [.resetTracking, .removeExistingAnchors])
-//        sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
-//
-//        isRelocalizingMap = true
-//        virtualObjectAnchor = nil
     }
     
     @objc func resetExperience() {
+        self.arView.scene.anchors.removeAll()
         self.arView.session.run(defaultConfiguration, options: [.resetTracking, .removeExistingAnchors])
     }
     
@@ -338,8 +313,7 @@ class ViewController: UIViewController {
     lazy var anchorMap: [UUID: String] = {
         return [:]
     }()
-    
-    
+
 }
 
 extension ViewController: ARCoachingOverlayViewDelegate {
@@ -347,17 +321,20 @@ extension ViewController: ARCoachingOverlayViewDelegate {
 }
 
 extension ViewController: ARSessionDelegate {
-    
     func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
-//        session.add(anchor: anchors.first!)
-//        arView.scene.addAnchor(try! Experience.loadBox())
-//        anchors.first?.identifier
+        debugPrint(#function, anchors, anchors.count)
+        if let anchor = anchors.first {
+//            let box = try! Experience.loadBoxA(a: anchor)
         
-        debugPrint(#function, anchors)
-//        let anchor = self.arView.scene.anchors[self.arView.scene.anchors.count - 1]
-//        let ar = ["a"]
-        
-//        anchors.first.
+            let box: Experience.Box = try! restoreScene(scene: "Box", a: anchor)
+//            let ae = AnchorEntity(anchor: anchor)
+//            let devModel = Experience.createVideoModel(from: ae)
+//            arView.scene.addAnchor(devModel)
+            box.playAnimation(named: "Behavior")
+            self.arView.scene.anchors.append(box)
+            
+            debugPrint("video added", box)
+        }
     }
     
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
@@ -369,6 +346,6 @@ extension ViewController: ARSessionDelegate {
     }
     
     func sessionShouldAttemptRelocalization(_ session: ARSession) -> Bool {
-        return true
+        return false
     }
 }

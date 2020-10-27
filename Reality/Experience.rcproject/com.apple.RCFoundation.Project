@@ -16,55 +16,12 @@
                       "accessibility" : {
                         "__content" : [
                           {
-                            "isEnabled" : true
+                            "isEnabled" : false
                           }
                         ],
                         "__version" : 1
                       },
                       "actionGroups" : [
-                        {
-                          "__content" : [
-                            {
-                              "configurations" : [
-                                {
-                                  "__content" : [
-                                    {
-                                      "configurationBox" : {
-                                        "configuration" : {
-                                          "animationDuration" : 0,
-                                          "direction" : [
-                                            0,
-                                            0,
-                                            1
-                                          ],
-                                          "duration" : 1,
-                                          "loops" : false,
-                                          "target" : [
-                                            "9603FFAB-A1B6-49BF-8F96-EDE9231B7AFE"
-                                          ],
-                                          "upVector" : [
-                                            0,
-                                            1,
-                                            0
-                                          ]
-                                        },
-                                        "name" : {
-                                          "type" : "lookAtCamera"
-                                        }
-                                      },
-                                      "identifier" : "F9233095-52A6-43CB-B4E9-7287130AA205",
-                                      "isEnabled" : true
-                                    }
-                                  ],
-                                  "__version" : 1
-                                }
-                              ],
-                              "identifier" : "65D872E3-A133-4E8D-A9F5-7D2D5CB5CD7A",
-                              "isEnabled" : true
-                            }
-                          ],
-                          "__version" : 1
-                        },
                         {
                           "__content" : [
                             {
@@ -91,106 +48,14 @@
                                           "type" : "startAnimate"
                                         }
                                       },
-                                      "identifier" : "9F301A2F-EE73-412E-B8C6-3C6D4A5FF59B",
+                                      "identifier" : "27B23A17-A527-494C-8DA7-140CFDE359FC",
                                       "isEnabled" : true
                                     }
                                   ],
                                   "__version" : 1
                                 }
                               ],
-                              "identifier" : "7F1DDD58-F4BE-477D-A393-5BAA724569A9",
-                              "isEnabled" : true
-                            }
-                          ],
-                          "__version" : 1
-                        }
-                      ],
-                      "color" : [
-                        0.21568627655506134,
-                        0.72549021244049072,
-                        0.80000001192092896,
-                        1
-                      ],
-                      "identifier" : "EB39DCA7-8319-42CF-AAF9-434DEA0B76A0",
-                      "isEnabled" : true,
-                      "isLooping" : true,
-                      "isModal" : false,
-                      "name" : "行为",
-                      "triggers" : [
-                        {
-                          "__content" : [
-                            {
-                              "configurationBox" : {
-                                "configuration" : {
-                                  "distance" : 3.0014593601226807,
-                                  "target" : [
-                                    "9603FFAB-A1B6-49BF-8F96-EDE9231B7AFE"
-                                  ],
-                                  "type" : 0
-                                },
-                                "name" : "proximity"
-                              },
-                              "identifier" : "F927ED64-8F65-42A1-87CA-142D87686B17",
-                              "isEnabled" : true
-                            }
-                          ],
-                          "__version" : 1
-                        }
-                      ]
-                    }
-                  ],
-                  "__version" : 3
-                },
-                {
-                  "__content" : [
-                    {
-                      "accessibility" : {
-                        "__content" : [
-                          {
-                            "isEnabled" : false
-                          }
-                        ],
-                        "__version" : 1
-                      },
-                      "actionGroups" : [
-                        {
-                          "__content" : [
-                            {
-                              "configurations" : [
-                                {
-                                  "__content" : [
-                                    {
-                                      "configurationBox" : {
-                                        "configuration" : {
-                                          "angularCoefficient" : 1,
-                                          "duration" : 0.5,
-                                          "isTransformInitKeyPath" : true,
-                                          "linearCoefficient" : 1,
-                                          "location" : [
-                                            0,
-                                            2,
-                                            -1.0033998489379883
-                                          ],
-                                          "moveEase" : "easeInOut",
-                                          "respectPhysics" : false,
-                                          "scale" : 1.1558955907821655,
-                                          "target" : [
-                                            "896473B9-2F6F-4AA6-8353-12E48396104E"
-                                          ]
-                                        },
-                                        "name" : {
-                                          "arguments" : "absolute",
-                                          "type" : "transform"
-                                        }
-                                      },
-                                      "identifier" : "956556A1-89B1-43E3-BF61-21F7F13228A8",
-                                      "isEnabled" : true
-                                    }
-                                  ],
-                                  "__version" : 1
-                                }
-                              ],
-                              "identifier" : "026F488B-31F6-4C3B-AD9D-3132B60E9FBB",
+                              "identifier" : "BFA9923E-19AA-4F0F-9D16-00F01E09C7B4",
                               "isEnabled" : true
                             }
                           ],
@@ -203,9 +68,9 @@
                         0.69019609689712524,
                         1
                       ],
-                      "identifier" : "19CD9B52-C2B2-4DF3-89F3-E2E87A451323",
+                      "identifier" : "2B53B7EE-2AA7-449D-971A-35219E704AF0",
                       "isEnabled" : true,
-                      "isLooping" : false,
+                      "isLooping" : true,
                       "isModal" : false,
                       "name" : "Behavior",
                       "triggers" : [
@@ -214,7 +79,7 @@
                             {
                               "configurationBox" : {
                                 "configuration" : {
-                                  "distance" : 6.5280742645263672,
+                                  "distance" : 2.0791459083557129,
                                   "target" : [
                                     "9603FFAB-A1B6-49BF-8F96-EDE9231B7AFE"
                                   ],
@@ -222,242 +87,7 @@
                                 },
                                 "name" : "proximity"
                               },
-                              "identifier" : "7A27094A-3D07-4A30-A8ED-FD30F7D8D742",
-                              "isEnabled" : true
-                            }
-                          ],
-                          "__version" : 1
-                        }
-                      ]
-                    }
-                  ],
-                  "__version" : 3
-                },
-                {
-                  "__content" : [
-                    {
-                      "accessibility" : {
-                        "__content" : [
-                          {
-                            "isEnabled" : false
-                          }
-                        ],
-                        "__version" : 1
-                      },
-                      "actionGroups" : [
-                        {
-                          "__content" : [
-                            {
-                              "configurations" : [
-                                {
-                                  "__content" : [
-                                    {
-                                      "configurationBox" : {
-                                        "configuration" : {
-                                          "angularCoefficient" : 1,
-                                          "animationStyle" : "basic",
-                                          "buildOutAnimationType" : "scale up",
-                                          "distance" : 1,
-                                          "duration" : 2.0699999332427979,
-                                          "fadeOut" : true,
-                                          "linearCoefficient" : 1,
-                                          "moveEase" : "easeInOut",
-                                          "respectPhysics" : false,
-                                          "target" : [
-                                            "9603FFAB-A1B6-49BF-8F96-EDE9231B7AFE"
-                                          ]
-                                        },
-                                        "name" : {
-                                          "type" : "hide"
-                                        }
-                                      },
-                                      "identifier" : "41DEB2C8-06C1-4933-B78A-F15C6DD4C39C",
-                                      "isEnabled" : true
-                                    }
-                                  ],
-                                  "__version" : 1
-                                }
-                              ],
-                              "identifier" : "1D18304E-4998-4C38-8351-C91942F5F09C",
-                              "isEnabled" : true
-                            }
-                          ],
-                          "__version" : 1
-                        }
-                      ],
-                      "color" : [
-                        0.49019607901573181,
-                        0.7450980544090271,
-                        0.94901961088180542,
-                        1
-                      ],
-                      "identifier" : "CF9A1A65-9EBC-47BE-BD89-23570A93DBE1",
-                      "isEnabled" : true,
-                      "isLooping" : false,
-                      "isModal" : false,
-                      "name" : "行为 1",
-                      "triggers" : [
-                        {
-                          "__content" : [
-                            {
-                              "configurationBox" : {
-                                "configuration" : {
-
-                                },
-                                "name" : "start"
-                              },
-                              "identifier" : "10B40D3E-43EF-428E-8C1B-182F3ED3B8B3",
-                              "isEnabled" : true
-                            }
-                          ],
-                          "__version" : 1
-                        }
-                      ]
-                    }
-                  ],
-                  "__version" : 3
-                },
-                {
-                  "__content" : [
-                    {
-                      "accessibility" : {
-                        "__content" : [
-                          {
-                            "isEnabled" : false
-                          }
-                        ],
-                        "__version" : 1
-                      },
-                      "actionGroups" : [
-                        {
-                          "__content" : [
-                            {
-                              "configurations" : [
-                                {
-                                  "__content" : [
-                                    {
-                                      "configurationBox" : {
-                                        "configuration" : {
-                                          "angularCoefficient" : 1,
-                                          "animationStyle" : "basic",
-                                          "buildOutAnimationType" : "none",
-                                          "distance" : 1,
-                                          "duration" : 0,
-                                          "fadeOut" : true,
-                                          "linearCoefficient" : 1,
-                                          "moveEase" : "easeInOut",
-                                          "respectPhysics" : false,
-                                          "target" : [
-                                            "9603FFAB-A1B6-49BF-8F96-EDE9231B7AFE"
-                                          ]
-                                        },
-                                        "name" : {
-                                          "type" : "hide"
-                                        }
-                                      },
-                                      "identifier" : "FDB2AB3D-9BFD-4191-8AE6-3B2A6FEFE38B",
-                                      "isEnabled" : true
-                                    }
-                                  ],
-                                  "__version" : 1
-                                }
-                              ],
-                              "identifier" : "7F1FC49A-6478-4E76-A9C6-80C39A6D42DF",
-                              "isEnabled" : true
-                            }
-                          ],
-                          "__version" : 1
-                        },
-                        {
-                          "__content" : [
-                            {
-                              "configurations" : [
-                                {
-                                  "__content" : [
-                                    {
-                                      "configurationBox" : {
-                                        "configuration" : {
-                                          "duration" : 1
-                                        },
-                                        "name" : {
-                                          "type" : "wait"
-                                        }
-                                      },
-                                      "identifier" : "326E7EE0-4D7E-4E3E-92ED-84EEEC114632",
-                                      "isEnabled" : true
-                                    }
-                                  ],
-                                  "__version" : 1
-                                }
-                              ],
-                              "identifier" : "791DD7B6-C496-4554-8398-73F7FE6DE115",
-                              "isEnabled" : true
-                            }
-                          ],
-                          "__version" : 1
-                        },
-                        {
-                          "__content" : [
-                            {
-                              "configurations" : [
-                                {
-                                  "__content" : [
-                                    {
-                                      "configurationBox" : {
-                                        "configuration" : {
-                                          "angularCoefficient" : 1,
-                                          "animationStyle" : "basic",
-                                          "buildInAnimationType" : "none",
-                                          "distance" : 1,
-                                          "duration" : 1,
-                                          "fadeIn" : true,
-                                          "linearCoefficient" : 1,
-                                          "moveEase" : "easeInOut",
-                                          "respectPhysics" : false,
-                                          "target" : [
-                                            "9603FFAB-A1B6-49BF-8F96-EDE9231B7AFE"
-                                          ]
-                                        },
-                                        "name" : {
-                                          "type" : "show"
-                                        }
-                                      },
-                                      "identifier" : "E3AD08C5-7EA7-4ABD-A9FA-6EFC6BF7E02A",
-                                      "isEnabled" : true
-                                    }
-                                  ],
-                                  "__version" : 1
-                                }
-                              ],
-                              "identifier" : "DC5F2AF3-5E5C-4D70-AC8E-2FFDD7301855",
-                              "isEnabled" : true
-                            }
-                          ],
-                          "__version" : 1
-                        }
-                      ],
-                      "color" : [
-                        0.30980393290519714,
-                        0.56470590829849243,
-                        0.99215686321258545,
-                        1
-                      ],
-                      "identifier" : "C9A86634-D62D-4904-8A27-F060ECA556DF",
-                      "isEnabled" : true,
-                      "isLooping" : false,
-                      "isModal" : false,
-                      "name" : "行为 2",
-                      "triggers" : [
-                        {
-                          "__content" : [
-                            {
-                              "configurationBox" : {
-                                "configuration" : {
-
-                                },
-                                "name" : "start"
-                              },
-                              "identifier" : "96A961FD-CFFA-4C17-96C9-752A1FB165E1",
+                              "identifier" : "C7BF5F77-DBC2-4276-8B37-ADDB17C572AF",
                               "isEnabled" : true
                             }
                           ],
@@ -774,21 +404,21 @@
               "title" : "Box",
               "viewTransform" : {
                 "cameraTransform" : [
-                  0.99528729915618896,
-                  -4.1536989670021285e-07,
-                  -0.09696970134973526,
+                  0.75185686349868774,
+                  -4.321336461998726e-07,
+                  0.65932625532150269,
                   0,
-                  -0.010691606439650059,
-                  0.99390250444412231,
-                  -0.10974248498678207,
+                  0.25610017776489258,
+                  0.92147970199584961,
+                  -0.29204091429710388,
                   0,
-                  0.096378378570079803,
-                  0.11026205867528915,
-                  0.98921859264373779,
+                  -0.60755562782287598,
+                  0.38842654228210449,
+                  0.69282102584838867,
                   0,
-                  1.0708005428314209,
-                  1.6739343404769897,
-                  3.6034514904022217,
+                  -2.5492129325866699,
+                  3.4307570457458496,
+                  3.5251286029815674,
                   1
                 ],
                 "sceneTransform" : [
@@ -1083,21 +713,21 @@
               "title" : "Dev",
               "viewTransform" : {
                 "cameraTransform" : [
-                  0.99869966506958008,
+                  0.96492868661880493,
                   -3.8743016261832963e-07,
-                  -0.050979234278202057,
+                  0.26251199841499329,
                   0,
-                  -0.019070528447628021,
-                  0.92739194631576538,
-                  -0.37360459566116333,
+                  0.076592124998569489,
+                  0.95649003982543945,
+                  -0.28153210878372192,
                   0,
-                  0.047277864068746567,
-                  0.37409096956253052,
-                  0.92618608474731445,
+                  -0.25109001994132996,
+                  0.29176473617553711,
+                  0.92294466495513916,
                   0,
-                  -0.12670111656188965,
-                  2.7288448810577393,
-                  5.0518298149108887,
+                  -2.061394214630127,
+                  2.1939256191253662,
+                  4.9939165115356445,
                   1
                 ],
                 "sceneTransform" : [

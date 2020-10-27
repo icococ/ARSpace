@@ -17,6 +17,7 @@
 		3CE4D67A25387A8C001FEE49 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE4D67925387A8C001FEE49 /* RoundedButton.swift */; };
 		B20146612539303E009DF205 /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B20146602539303E009DF205 /* video.mp4 */; };
 		B201466A253957E2009DF205 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2014668253957E2009DF205 /* Main.storyboard */; };
+		B2D1B1D52547CF89007619E6 /* ExperienceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D1B1D42547CF89007619E6 /* ExperienceController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		3CE4D67925387A8C001FEE49 /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		B20146602539303E009DF205 /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
 		B2014669253957E2009DF205 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B2D1B1D42547CF89007619E6 /* ExperienceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				3C2026A1252DD6290029D701 /* SnapshotAnchor.swift */,
 				3C20268C252DC3DA0029D701 /* AppDelegate.swift */,
 				3C20268E252DC3DA0029D701 /* ViewController.swift */,
+				B2D1B1D42547CF89007619E6 /* ExperienceController.swift */,
 				B2014668253957E2009DF205 /* Main.storyboard */,
 				3C202690252DC3DA0029D701 /* Experience.rcproject */,
 				3C202695252DC3DC0029D701 /* Assets.xcassets */,
@@ -156,6 +159,7 @@
 				3C2026A2252DD6290029D701 /* SnapshotAnchor.swift in Sources */,
 				3C2026A5252DD9400029D701 /* Utilities.swift in Sources */,
 				3C202691252DC3DA0029D701 /* Experience.rcproject in Sources */,
+				B2D1B1D52547CF89007619E6 /* ExperienceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,13 +307,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L93RF262E3;
+				DEVELOPMENT_TEAM = 8ZQ9NYMT49;
 				INFOPLIST_FILE = Reality/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.big.Reality;
+				PRODUCT_BUNDLE_IDENTIFIER = com.big.RealityA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -322,13 +326,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L93RF262E3;
+				DEVELOPMENT_TEAM = 8ZQ9NYMT49;
 				INFOPLIST_FILE = Reality/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.big.Reality;
+				PRODUCT_BUNDLE_IDENTIFIER = com.big.RealityA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
