@@ -24,12 +24,10 @@ func restoreScene<T>(scene: String, a: ARAnchor) throws -> T where T: HasAnchori
     return box
 }
 
-
 extension Experience {
     private static var streams = [Combine.AnyCancellable]()
     
-    static func restoreDevSceneAsync(a: ARAnchor,
-                                     completion: @escaping (Swift.Result<Experience.Dev, Swift.Error>) -> Void) {
+    static func restoreDevSceneAsync(a: ARAnchor, completion: @escaping (Swift.Result<Experience.Dev, Swift.Error>) -> Void) {
         guard let realityFileURL = Foundation.Bundle(for: Experience.Dev.self).url(forResource: "Experience", withExtension: "reality") else {
             completion(.failure(Experience.LoadRealityFileError.fileNotFound("Experience.reality")))
             return
@@ -53,8 +51,8 @@ extension Experience {
         cancellable?.store(in: &streams)
     }
     
-    static func restoreMonitorSceneAsync(a: ARAnchor, completion: @escaping (Swift.Result<Experience.Dev, Swift.Error>) -> Void) {
-        guard let realityFileURL = Foundation.Bundle(for: Experience.Dev.self).url(forResource: "Experience", withExtension: "reality") else {
+    static func restoreMonitorSceneAsync(a: ARAnchor, completion: @escaping (Swift.Result<Experience.Monitor, Swift.Error>) -> Void) {
+        guard let realityFileURL = Foundation.Bundle(for: Experience.Monitor.self).url(forResource: "Experience", withExtension: "reality") else {
             completion(.failure(Experience.LoadRealityFileError.fileNotFound("Experience.reality")))
             return
         }
@@ -69,7 +67,7 @@ extension Experience {
         }, receiveValue: { entity in
             let ae = AnchorEntity(anchor: a)
             ae.addChild(entity)
-            let scene = Experience.Dev()
+            let scene = Experience.Monitor()
             scene.anchoring = ae.anchoring
             scene.addChild(ae)
             completion(.success(scene))
@@ -103,8 +101,7 @@ extension Experience {
     }
     
     static func restoreScene<T>(scene: String, a: ARAnchor) throws -> T where T: HasAnchoring {
-        guard 
-            let realityFileURL = Foundation.Bundle(for: Experience.Box.self).url(forResource: "Experience", withExtension: "reality") else {
+        guard let realityFileURL = Foundation.Bundle(for: Experience.Box.self).url(forResource: "Experience", withExtension: "reality") else {
             throw Experience.LoadRealityFileError.fileNotFound("Experience.reality")
         }
         let realityFileSceneURL = realityFileURL.appendingPathComponent(scene, isDirectory: false)
@@ -151,5 +148,4 @@ extension Experience {
         dev.addChild(anchorEntity)
         return dev
     }
-
 }

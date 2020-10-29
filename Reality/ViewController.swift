@@ -27,9 +27,31 @@ class ViewController: UIViewController {
     
     var eventStreams = [AnyCancellable]()
     var scene: String?
-        
+    
+    @objc func singleTap(gesture: UITapGestureRecognizer) {
+        let point = gesture.location(in: arView)
+        for entity in self.arView.entities(at: point) {
+            debugPrint(entity.name)
+            if entity.name == "devPanel" {
+                self.performSegue(withIdentifier: "monitorSeg", sender: nil)
+                break
+            } else if entity.name == "monitorPanel" {
+                self.performSegue(withIdentifier: "monitorSeg", sender: nil)
+                break
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        debugPrint("手势", arView.gestureRecognizers)
+        self.arView.gestureRecognizers?.forEach({ (gesture) in
+//            gesture.removeTarget(nil, action: nil)
+        })
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(singleTap))
+        self.arView.addGestureRecognizer(tapGesture)
+        
         let arConfiguration = ARWorldTrackingConfiguration()
         arConfiguration.planeDetection = [.vertical, .horizontal]
         self.arView.debugOptions = [.showWorldOrigin, .showAnchorOrigins]
@@ -43,6 +65,9 @@ class ViewController: UIViewController {
                 debugPrint("subscribe_event1", self.anchorMap)
             }
         }.store(in: &eventStreams)
+        
+        
+//      self.arView.installGestures(.all, for: HasCollision)
         self.setupCoachingView()
         self.setupOverlayView()
     }
@@ -52,9 +77,17 @@ class ViewController: UIViewController {
         // Load the "Box" scene from the "Experience" Reality File
     }
     
- 
     @objc func placeBox() {
         self.loadBoxScene()
+    }
+    
+    @objc func placeDev() {
+        self.loadDevScene()
+    }
+    
+    @objc func placeMonitor() {
+        self.performSegue(withIdentifier: "monitorSeg", sender: nil)
+//        self.loadMonitorScene()
     }
     
     @objc func placeVideoAnchor() {
@@ -65,13 +98,27 @@ class ViewController: UIViewController {
 //        self.loadBox()
     }
     
+    func loadDevScene() {
+        Experience.loadDevAsync(completion: { [weak self](result) in
+            switch result {
+            case .success(let entity):
+                guard let self = self else { return }
+                entity.name = "Dev"
+                self.arView.scene.anchors.append(entity)
+            case .failure(let error):
+                print("Unable to load the game with error: \(error.localizedDescription)")
+            }
+        })
+    }
+    
     func loadMonitorScene() {
         Experience.loadMonitorAsync(completion: { [weak self](result) in
             switch result {
-            case .success(let box):
+            case .success(let entity):
                 guard let self = self else { return }
-                box.name = "Box"
-                self.arView.scene.anchors.append(box)
+                entity.name = "Monitor"
+                self.arView.scene.anchors.append(entity)
+                debugPrint("Monitor", self.arView.gestureRecognizers)
             case .failure(let error):
                 print("Unable to load the game with error: \(error.localizedDescription)")
             }
@@ -295,7 +342,9 @@ class ViewController: UIViewController {
         stackView.addArrangedSubview(loadButton)
         stackView.addArrangedSubview(resetButton)
         stackView.addArrangedSubview(discoverButton)
-        stackView.addArrangedSubview(placeBoxButton)
+//        stackView.addArrangedSubview(placeBoxButton)
+        stackView.addArrangedSubview(placeMonitorButton)
+        stackView.addArrangedSubview(placeDevButton)
         stackView.addArrangedSubview(placeVideoButton)
         self.arView.addSubview(stackView)
         let centerX = stackView.centerXAnchor.constraint(equalTo: self.arView.centerXAnchor)
@@ -318,6 +367,22 @@ class ViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Box", for: [.normal])
         button.addTarget(self, action: #selector(placeBox), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var placeDevButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Dev", for: [.normal])
+        button.addTarget(self, action: #selector(placeDev), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var placeMonitorButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Monitor", for: [.normal])
+        button.addTarget(self, action: #selector(placeMonitor), for: .touchUpInside)
         return button
     }()
     
@@ -405,7 +470,7 @@ extension ViewController {
             }
         }
         switch scene {
-        case "Box":
+        case "Dev":
             Experience.restoreDevSceneAsync(a: anchor) { (result) in
                 completed(result: result)
             }

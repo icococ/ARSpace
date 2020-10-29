@@ -2547,6 +2547,87 @@
                     }
                   ],
                   "__version" : 3
+                },
+                {
+                  "__content" : [
+                    {
+                      "accessibility" : {
+                        "__content" : [
+                          {
+                            "isEnabled" : false
+                          }
+                        ],
+                        "__version" : 1
+                      },
+                      "actionGroups" : [
+                        {
+                          "__content" : [
+                            {
+                              "configurations" : [
+                                {
+                                  "__content" : [
+                                    {
+                                      "configurationBox" : {
+                                        "configuration" : {
+                                          "animationStyle" : "basic",
+                                          "duration" : 1.0299999713897705,
+                                          "emphasisAnimationType" : "jiggle",
+                                          "iterations" : 1,
+                                          "target" : [
+                                            "7AD3D7EB-6910-4D58-8B82-4725BE55AC23"
+                                          ]
+                                        },
+                                        "name" : {
+                                          "type" : "emphasis"
+                                        }
+                                      },
+                                      "identifier" : "E413BBA5-5B34-42E7-8102-48FE07C1F09A",
+                                      "isEnabled" : true
+                                    }
+                                  ],
+                                  "__version" : 1
+                                }
+                              ],
+                              "identifier" : "6D83570E-0761-46D9-B387-8B43C6CB1AB0",
+                              "isEnabled" : true
+                            }
+                          ],
+                          "__version" : 1
+                        }
+                      ],
+                      "color" : [
+                        0.49019607901573181,
+                        0.7450980544090271,
+                        0.94901961088180542,
+                        1
+                      ],
+                      "identifier" : "98DF4EDE-F213-4871-A6BF-38EA08AB8047",
+                      "isEnabled" : true,
+                      "isLooping" : false,
+                      "isModal" : false,
+                      "name" : "行为 2",
+                      "triggers" : [
+                        {
+                          "__content" : [
+                            {
+                              "configurationBox" : {
+                                "configuration" : {
+                                  "target" : [
+                                    "7AD3D7EB-6910-4D58-8B82-4725BE55AC23"
+                                  ]
+                                },
+                                "name" : "tapTarget"
+                              },
+                              "identifier" : "BBEF3D82-136F-4C11-8AAC-ECA8B60B3AB7",
+                              "isEnabled" : true
+                            }
+                          ],
+                          "__version" : 1
+                        }
+                      ]
+                    }
+                  ],
+                  "__version" : 3
                 }
               ],
               "gravity" : [
@@ -2925,6 +3006,20 @@
                             "typeName" : "UUID",
                             "value" : "7AD3D7EB-6910-4D58-8B82-4725BE55AC23"
                           }
+                        ],
+                        [
+                          "entityName",
+                          {
+                            "typeName" : "String",
+                            "value" : "monitorPanel"
+                          }
+                        ],
+                        [
+                          "rigidBody-enabled",
+                          {
+                            "typeName" : "Bool",
+                            "value" : true
+                          }
                         ]
                       ]
                     },
@@ -2972,21 +3067,21 @@
               "title" : "Monitor",
               "viewTransform" : {
                 "cameraTransform" : [
-                  0.99975115060806274,
+                  0.82154124975204468,
                   -4.0233135223388672e-07,
-                  0.022307157516479492,
+                  0.5701490044593811,
                   0,
-                  0.0085787372663617134,
-                  0.92310386896133423,
-                  -0.38445484638214111,
+                  0.15305046737194061,
+                  0.96329671144485474,
+                  -0.22053317725658417,
                   0,
-                  -0.020591642707586288,
-                  0.38455003499984741,
-                  0.92287439107894897,
+                  -0.54922252893447876,
+                  0.26843816041946411,
+                  0.79138833284378052,
                   0,
-                  -0.095981284976005554,
-                  0.62707579135894775,
-                  1.152151346206665,
+                  -0.74198347330093384,
+                  0.48210614919662476,
+                  0.94491308927536011,
                   1
                 ],
                 "sceneTransform" : [
@@ -3041,35 +3136,26 @@
                                     {
                                       "configurationBox" : {
                                         "configuration" : {
-                                          "angularCoefficient" : 1,
+                                          "animationStyle" : "basic",
                                           "duration" : 1,
-                                          "isTransformInitKeyPath" : true,
-                                          "linearCoefficient" : 1,
-                                          "location" : [
-                                            0,
-                                            0.30000001192092896,
-                                            0
-                                          ],
-                                          "moveEase" : "easeOut",
-                                          "respectPhysics" : false,
-                                          "scale" : 1.0499999523162842,
+                                          "emphasisAnimationType" : "pop",
+                                          "iterations" : 1,
                                           "target" : [
                                             "8B96AF41-D1B8-4E4B-8834-57DEE88055AF"
                                           ]
                                         },
                                         "name" : {
-                                          "arguments" : "local",
-                                          "type" : "transform"
+                                          "type" : "emphasis"
                                         }
                                       },
-                                      "identifier" : "19EE516B-8B1C-478C-AAB3-1B9573486FE1",
+                                      "identifier" : "DEE86DD7-2A6A-4EAC-AE52-C355E1EC89F4",
                                       "isEnabled" : true
                                     }
                                   ],
                                   "__version" : 1
                                 }
                               ],
-                              "identifier" : "EC667677-57F9-48CD-B0BF-15FEF8ED014C",
+                              "identifier" : "C27C5039-0270-4A99-B41D-BABDB85420CE",
                               "isEnabled" : true
                             }
                           ],
@@ -3185,6 +3271,87 @@
                                 "name" : "proximity"
                               },
                               "identifier" : "78EE9E90-A8AC-4550-A34C-444835A0887F",
+                              "isEnabled" : true
+                            }
+                          ],
+                          "__version" : 1
+                        }
+                      ]
+                    }
+                  ],
+                  "__version" : 3
+                },
+                {
+                  "__content" : [
+                    {
+                      "accessibility" : {
+                        "__content" : [
+                          {
+                            "isEnabled" : false
+                          }
+                        ],
+                        "__version" : 1
+                      },
+                      "actionGroups" : [
+                        {
+                          "__content" : [
+                            {
+                              "configurations" : [
+                                {
+                                  "__content" : [
+                                    {
+                                      "configurationBox" : {
+                                        "configuration" : {
+                                          "animationStyle" : "basic",
+                                          "duration" : 1.0299999713897705,
+                                          "emphasisAnimationType" : "pop",
+                                          "iterations" : 1,
+                                          "target" : [
+                                            "8B96AF41-D1B8-4E4B-8834-57DEE88055AF"
+                                          ]
+                                        },
+                                        "name" : {
+                                          "type" : "emphasis"
+                                        }
+                                      },
+                                      "identifier" : "CB428F90-CE26-427A-9B34-E39F49DD9976",
+                                      "isEnabled" : true
+                                    }
+                                  ],
+                                  "__version" : 1
+                                }
+                              ],
+                              "identifier" : "9C432C2F-2C83-4517-AA77-19DF5FDFD296",
+                              "isEnabled" : true
+                            }
+                          ],
+                          "__version" : 1
+                        }
+                      ],
+                      "color" : [
+                        0.49019607901573181,
+                        0.7450980544090271,
+                        0.94901961088180542,
+                        1
+                      ],
+                      "identifier" : "7487D52D-AB17-4067-AEE5-377F6ECD6A07",
+                      "isEnabled" : true,
+                      "isLooping" : false,
+                      "isModal" : false,
+                      "name" : "行为 2",
+                      "triggers" : [
+                        {
+                          "__content" : [
+                            {
+                              "configurationBox" : {
+                                "configuration" : {
+                                  "target" : [
+                                    "8B96AF41-D1B8-4E4B-8834-57DEE88055AF"
+                                  ]
+                                },
+                                "name" : "tapTarget"
+                              },
+                              "identifier" : "87C29CFB-A89F-4716-9FDF-9A197B18AB1C",
                               "isEnabled" : true
                             }
                           ],
@@ -3577,6 +3744,20 @@
                             "typeName" : "UUID",
                             "value" : "8B96AF41-D1B8-4E4B-8834-57DEE88055AF"
                           }
+                        ],
+                        [
+                          "entityName",
+                          {
+                            "typeName" : "String",
+                            "value" : "devPanel"
+                          }
+                        ],
+                        [
+                          "rigidBody-enabled",
+                          {
+                            "typeName" : "Bool",
+                            "value" : true
+                          }
                         ]
                       ]
                     },
@@ -3623,21 +3804,21 @@
               "title" : "Dev",
               "viewTransform" : {
                 "cameraTransform" : [
-                  0.89966362714767456,
-                  -3.9301812648773193e-07,
-                  0.43658357858657837,
+                  0.90602028369903564,
+                  -3.932509571313858e-07,
+                  0.42323419451713562,
                   0,
-                  0.16918566823005676,
-                  0.92186093330383301,
-                  -0.34863820672035217,
+                  0.1739124208688736,
+                  0.91167503595352173,
+                  -0.37229421734809875,
                   0,
-                  -0.40246924757957458,
-                  0.38752022385597229,
-                  0.82936513423919678,
+                  -0.38585194945335388,
+                  0.41091153025627136,
+                  0.82599645853042603,
                   0,
-                  -0.57094109058380127,
-                  0.55432039499282837,
-                  1.0650554895401001,
+                  -1.1814147233963013,
+                  0.85162603855133057,
+                  2.5947384834289551,
                   1
                 ],
                 "sceneTransform" : [

@@ -49,11 +49,51 @@
                         <outlet property="arView" destination="8bC-Xf-vdC" id="TPV-4x-avp"/>
                         <outlet property="coachingOverlay" destination="WcU-RA-K7q" id="mdA-mA-YKV"/>
                         <outlet property="snapshotImage" destination="L7r-F7-bs4" id="Mng-t6-xbr"/>
+                        <segue destination="FpG-GK-o65" kind="presentation" identifier="monitorSeg" id="tN3-0z-58E"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="386.95652173913044" y="122.54464285714285"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="t5r-1j-0Zy">
+            <objects>
+                <viewController id="FpG-GK-o65" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IMW-TD-RrN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HGG-ux-IqB">
+                                <rect key="frame" x="0.0" y="161.5" width="414" height="646.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monitoring Project" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gjs-dc-0lr">
+                                        <rect key="frame" x="24" y="40" width="260.5" height="38.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="32"/>
+                                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="gjs-dc-0lr" firstAttribute="top" secondItem="HGG-ux-IqB" secondAttribute="top" constant="40" id="7DD-0d-HnS"/>
+                                    <constraint firstItem="gjs-dc-0lr" firstAttribute="leading" secondItem="HGG-ux-IqB" secondAttribute="leading" constant="24" id="BQn-Ci-vbl"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="eJ5-xS-aoU"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="eJ5-xS-aoU" firstAttribute="bottom" secondItem="HGG-ux-IqB" secondAttribute="bottom" id="7oR-eQ-Lac"/>
+                            <constraint firstItem="eJ5-xS-aoU" firstAttribute="trailing" secondItem="HGG-ux-IqB" secondAttribute="trailing" id="Y7F-lL-h4y"/>
+                            <constraint firstItem="HGG-ux-IqB" firstAttribute="leading" secondItem="eJ5-xS-aoU" secondAttribute="leading" id="dKz-Y4-bbW"/>
+                            <constraint firstItem="HGG-ux-IqB" firstAttribute="height" secondItem="eJ5-xS-aoU" secondAttribute="height" multiplier="0.8" id="wu8-bM-eCX"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iaQ-H4-ntI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1218.840579710145" y="122.54464285714285"/>
         </scene>
     </scenes>
 </document>
