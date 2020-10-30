@@ -33,7 +33,7 @@ class ViewController: UIViewController {
         for entity in self.arView.entities(at: point) {
             debugPrint(entity.name)
             if entity.name == "devPanel" {
-                self.performSegue(withIdentifier: "monitorSeg", sender: nil)
+                self.performSegue(withIdentifier: "devSeg", sender: nil)
                 break
             } else if entity.name == "monitorPanel" {
                 self.performSegue(withIdentifier: "monitorSeg", sender: nil)
@@ -44,11 +44,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        debugPrint("手势", arView.gestureRecognizers)
-        self.arView.gestureRecognizers?.forEach({ (gesture) in
-//            gesture.removeTarget(nil, action: nil)
-        })
-        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(singleTap))
         self.arView.addGestureRecognizer(tapGesture)
         
@@ -65,9 +60,6 @@ class ViewController: UIViewController {
                 debugPrint("subscribe_event1", self.anchorMap)
             }
         }.store(in: &eventStreams)
-        
-        
-//      self.arView.installGestures(.all, for: HasCollision)
         self.setupCoachingView()
         self.setupOverlayView()
     }
@@ -82,12 +74,13 @@ class ViewController: UIViewController {
     }
     
     @objc func placeDev() {
+//        self.performSegue(withIdentifier: "devSeg", sender: nil)
         self.loadDevScene()
     }
     
     @objc func placeMonitor() {
-        self.performSegue(withIdentifier: "monitorSeg", sender: nil)
-//        self.loadMonitorScene()
+//        self.performSegue(withIdentifier: "monitorSeg", sender: nil)
+        self.loadMonitorScene()
     }
     
     @objc func placeVideoAnchor() {

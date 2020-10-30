@@ -50,6 +50,7 @@
                         <outlet property="coachingOverlay" destination="WcU-RA-K7q" id="mdA-mA-YKV"/>
                         <outlet property="snapshotImage" destination="L7r-F7-bs4" id="Mng-t6-xbr"/>
                         <segue destination="FpG-GK-o65" kind="presentation" identifier="monitorSeg" id="tN3-0z-58E"/>
+                        <segue destination="edG-db-z90" kind="presentation" identifier="devSeg" id="Ef5-r0-b9f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -73,11 +74,76 @@
                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B8B-mL-xA7">
+                                        <rect key="frame" x="24" y="78.5" width="366" height="558"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Itj-Jy-FYR">
+                                                <rect key="frame" x="0.0" y="0.0" width="366" height="1127"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fg7-cW-YFF">
+                                                        <rect key="frame" x="0.0" y="315.5" width="366" height="811.5"/>
+                                                        <mutableString key="text">System issues may happen anytime. With Solarwinds and AppDynamics, we achieved to send out monitoring alert emails anytime in the past. However, alert email cannot notify people especially when they sleep or on the way during non-working hours. This will lead to lost time of handling critical issues. The purpose of monitoring automation call is to notify IT operation colleagues about system alerts anytime and anywhere.
+
+From Feb to May. 2020, we implemented automation call solution using Agile way and in-house configuration and development way, which ensured fast delivery and cost saving.
+
+The automation call solution implemented in 3 steps:
+
+Identify the most critical services which impact important business functions. Automation calls are only applied to the critical (highest priority) alerts;
+
+CCT team develops API to integrate alert call request to ASPECT system, and at the same time monitoring team configures the notification way and call receivers;
+
+Test and debug for different test cases.
+
+Finally, the automation call solution go-live on May 6. Now critical issues will trigger alert emails and automation call at the same time. IT application teams received call at the first time and then handle issues in time. This solution saved time and ensured the system stability more proactively.
+
+</mutableString>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <mutableString key="userLabel">System issues may happen anytime. With Solarwinds and AppDynamics, we achieved to send out monitoring alert emails anytime in the past. However, alert email cannot notify people especially when they sleep or on the way during non-working hours. This will lead to lost time of handling critical issues. The purpose of monitoring automation call is to notify IT operation colleagues about system alerts anytime and anywhere.  From Feb to May. 2020, we implemented automation call solution using Agile way and in-house configuration and development way, which ensured fast delivery and cost saving.  The automation call solution implemented in 3 steps:  Identify the most critical services which impact important business functions. Automation calls are only applied to the critical (highest priority) alerts;  CCT team develops API to integrate alert call request to ASPECT system, and at the same time monitoring team configures the notification way and call receivers;  Test and debug for different test cases.  Finally, the automation call solution go-live on May 6. Now critical issues will trigger alert emails and automation call at the same time. IT application teams received call at the first time and then handle issues in time. This solution saved time and ensured the system stability more proactively.</mutableString>
+                                                    </label>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" image="m.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="aYP-4c-yZN">
+                                                        <rect key="frame" x="0.0" y="0.0" width="366" height="305.5"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="fg7-cW-YFF" secondAttribute="bottom" id="21a-2E-8hp"/>
+                                                    <constraint firstItem="aYP-4c-yZN" firstAttribute="top" secondItem="Itj-Jy-FYR" secondAttribute="top" id="L8e-nP-x26"/>
+                                                    <constraint firstItem="aYP-4c-yZN" firstAttribute="leading" secondItem="Itj-Jy-FYR" secondAttribute="leading" id="ZkH-tc-BYg"/>
+                                                    <constraint firstItem="aYP-4c-yZN" firstAttribute="width" relation="lessThanOrEqual" secondItem="Itj-Jy-FYR" secondAttribute="width" id="frQ-eq-TmV"/>
+                                                    <constraint firstAttribute="trailing" secondItem="fg7-cW-YFF" secondAttribute="trailing" id="m0I-aI-agO"/>
+                                                    <constraint firstItem="fg7-cW-YFF" firstAttribute="leading" secondItem="Itj-Jy-FYR" secondAttribute="leading" id="sa2-YL-eJQ"/>
+                                                    <constraint firstItem="fg7-cW-YFF" firstAttribute="top" secondItem="aYP-4c-yZN" secondAttribute="bottom" constant="10" id="tFD-ED-4Xb"/>
+                                                    <constraint firstAttribute="height" constant="1000" id="xyo-jO-fJS"/>
+                                                </constraints>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="xyo-jO-fJS"/>
+                                                    </mask>
+                                                </variation>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="Itj-Jy-FYR" firstAttribute="top" secondItem="PvA-u8-ZlN" secondAttribute="top" id="4lz-sS-Fyn"/>
+                                            <constraint firstItem="Itj-Jy-FYR" firstAttribute="trailing" secondItem="PvA-u8-ZlN" secondAttribute="trailing" id="8Vo-kY-9Gk"/>
+                                            <constraint firstItem="Itj-Jy-FYR" firstAttribute="bottom" secondItem="PvA-u8-ZlN" secondAttribute="bottom" id="QVI-SE-isJ"/>
+                                            <constraint firstItem="Itj-Jy-FYR" firstAttribute="leading" secondItem="PvA-u8-ZlN" secondAttribute="leading" id="Yt9-Ex-pRP"/>
+                                            <constraint firstItem="Itj-Jy-FYR" firstAttribute="width" secondItem="2B5-tj-Xzv" secondAttribute="width" id="b9r-uf-QLq"/>
+                                        </constraints>
+                                        <viewLayoutGuide key="contentLayoutGuide" id="PvA-u8-ZlN"/>
+                                        <viewLayoutGuide key="frameLayoutGuide" id="2B5-tj-Xzv"/>
+                                    </scrollView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="gjs-dc-0lr" firstAttribute="top" secondItem="HGG-ux-IqB" secondAttribute="top" constant="40" id="7DD-0d-HnS"/>
                                     <constraint firstItem="gjs-dc-0lr" firstAttribute="leading" secondItem="HGG-ux-IqB" secondAttribute="leading" constant="24" id="BQn-Ci-vbl"/>
+                                    <constraint firstItem="B8B-mL-xA7" firstAttribute="top" secondItem="gjs-dc-0lr" secondAttribute="bottom" id="EO6-p3-5OC"/>
+                                    <constraint firstItem="B8B-mL-xA7" firstAttribute="leading" secondItem="HGG-ux-IqB" secondAttribute="leading" constant="24" id="Hzt-5a-2Ef"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gjs-dc-0lr" secondAttribute="trailing" constant="20" symbolic="YES" id="PN7-SF-EYO"/>
+                                    <constraint firstAttribute="bottom" secondItem="B8B-mL-xA7" secondAttribute="bottom" constant="10" id="ThX-P0-jrQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="B8B-mL-xA7" secondAttribute="trailing" constant="24" id="enb-uj-w5a"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -90,10 +156,73 @@
                             <constraint firstItem="HGG-ux-IqB" firstAttribute="height" secondItem="eJ5-xS-aoU" secondAttribute="height" multiplier="0.8" id="wu8-bM-eCX"/>
                         </constraints>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iaQ-H4-ntI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1218.840579710145" y="122.54464285714285"/>
+            <point key="canvasLocation" x="1938" y="-260"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="lmj-MK-ogw">
+            <objects>
+                <viewController id="edG-db-z90" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="E7Y-px-kBO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gV3-uS-L32">
+                                <rect key="frame" x="0.0" y="134.5" width="414" height="673.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Development Factory" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKy-oi-fem">
+                                        <rect key="frame" x="24" y="24" width="302" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="32"/>
+                                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We are Development Factory, the first in house develpopment team." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xzp-qG-1H9">
+                                        <rect key="frame" x="24" y="79" width="358.5" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic_hd.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="aDi-ih-uA1">
+                                        <rect key="frame" x="24" y="140" width="366" height="274.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="aDi-ih-uA1" secondAttribute="height" multiplier="4:3" id="s21-Nq-ufs"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fKy-oi-fem" secondAttribute="trailing" constant="20" symbolic="YES" id="5WK-Ac-6Wj"/>
+                                    <constraint firstAttribute="trailing" secondItem="aDi-ih-uA1" secondAttribute="trailing" constant="24" id="Gx3-j5-jUS"/>
+                                    <constraint firstItem="aDi-ih-uA1" firstAttribute="leading" secondItem="gV3-uS-L32" secondAttribute="leading" constant="24" id="RO7-kd-PXj"/>
+                                    <constraint firstItem="xzp-qG-1H9" firstAttribute="top" secondItem="fKy-oi-fem" secondAttribute="bottom" constant="16" id="ecJ-cP-l7f"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xzp-qG-1H9" secondAttribute="trailing" id="faG-OT-M1m"/>
+                                    <constraint firstItem="fKy-oi-fem" firstAttribute="leading" secondItem="gV3-uS-L32" secondAttribute="leading" constant="24" id="gGf-MQ-Hee"/>
+                                    <constraint firstItem="aDi-ih-uA1" firstAttribute="top" secondItem="xzp-qG-1H9" secondAttribute="bottom" constant="20" id="sxH-so-Im4"/>
+                                    <constraint firstItem="fKy-oi-fem" firstAttribute="top" secondItem="gV3-uS-L32" secondAttribute="top" constant="24" id="yCX-wf-t0M"/>
+                                    <constraint firstItem="xzp-qG-1H9" firstAttribute="leading" secondItem="gV3-uS-L32" secondAttribute="leading" constant="24" id="zK1-mh-gUZ"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="tWX-U0-47G"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="gV3-uS-L32" firstAttribute="leading" secondItem="tWX-U0-47G" secondAttribute="leading" id="Et2-s2-FOg"/>
+                            <constraint firstItem="tWX-U0-47G" firstAttribute="trailing" secondItem="gV3-uS-L32" secondAttribute="trailing" id="K6c-zH-tre"/>
+                            <constraint firstItem="tWX-U0-47G" firstAttribute="bottom" secondItem="gV3-uS-L32" secondAttribute="bottom" id="XXy-J0-pEw"/>
+                            <constraint firstItem="gV3-uS-L32" firstAttribute="height" secondItem="E7Y-px-kBO" secondAttribute="height" multiplier="0.8" id="cMJ-vf-PIR"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L1W-W3-RU6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1938" y="580"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="m.jpg" width="500" height="305"/>
+        <image name="pic_hd.jpg" width="3264" height="2448"/>
+    </resources>
 </document>
