@@ -79,8 +79,8 @@ class ViewController: UIViewController {
     }
     
     @objc func placeMonitor() {
-//        self.performSegue(withIdentifier: "monitorSeg", sender: nil)
-        self.loadMonitorScene()
+        self.performSegue(withIdentifier: "monitorSeg", sender: nil)
+//        self.loadMonitorScene()
     }
     
     @objc func placeVideoAnchor() {
@@ -111,7 +111,6 @@ class ViewController: UIViewController {
                 guard let self = self else { return }
                 entity.name = "Monitor"
                 self.arView.scene.anchors.append(entity)
-                debugPrint("Monitor", self.arView.gestureRecognizers)
             case .failure(let error):
                 print("Unable to load the game with error: \(error.localizedDescription)")
             }
