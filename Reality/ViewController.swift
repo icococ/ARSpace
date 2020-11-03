@@ -42,16 +42,55 @@ class ViewController: UIViewController {
         }
     }
     
+    @objc func swipeUpDown(gesture: UISwipeGestureRecognizer) {
+        switch gesture.direction {
+        case .up:
+            self.showSettingPanel()
+            break
+        case .down:
+            self.hideSettingPanel()
+            break
+        default:
+            break
+        }
+    }
+    
+    func showSettingPanel() {
+        debugPrint("showSettingPanel")
+        bottomContraint.constant = -50
+        UIView.animate(withDuration: 0.25) {
+            self.stackView.alpha = 1
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func hideSettingPanel() {
+        bottomContraint.constant = 0
+        UIView.animate(withDuration: 0.25) {
+            self.stackView.alpha = 0
+            self.view.layoutIfNeeded()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(singleTap))
-        self.arView.addGestureRecognizer(tapGesture)
-        
+        self.initARView()
+        self.setupGestures()
+        self.setupCoachingView()
+        self.setupOverlayView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Load the "Box" scene from the "Experience" Reality File
         let arConfiguration = ARWorldTrackingConfiguration()
         arConfiguration.planeDetection = [.vertical, .horizontal]
         self.arView.debugOptions = [.showWorldOrigin, .showAnchorOrigins]
         self.arView.session.delegate = self
         self.arView.session.run(arConfiguration)
+    }
+    
+    func initARView() {
         self.arView.scene.subscribe(to: SceneEvents.AnchoredStateChanged.self) { (event) in
             debugPrint("subscribe_event0", event.anchor.name, event)
             if event.isAnchored, let id = event.anchor.anchorIdentifier,
@@ -60,17 +99,24 @@ class ViewController: UIViewController {
                 debugPrint("subscribe_event1", self.anchorMap)
             }
         }.store(in: &eventStreams)
-        self.setupCoachingView()
-        self.setupOverlayView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        // Load the "Box" scene from the "Experience" Reality File
+    func setupGestures() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(singleTap))
+        self.arView.addGestureRecognizer(tapGesture)
+        
+        let swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeUpDown))
+        swipeUpGesture.direction = .up
+        self.arView.addGestureRecognizer(swipeUpGesture)
+        
+        let swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeUpDown))
+        swipeDownGesture.direction = .down
+        self.arView.addGestureRecognizer(swipeDownGesture)
     }
     
     @objc func placeBox() {
-        self.loadBoxScene()
+        self.navigationController?.popViewController(animated: true)
+//        self.loadBoxScene()
     }
     
     @objc func placeDev() {
@@ -79,8 +125,8 @@ class ViewController: UIViewController {
     }
     
     @objc func placeMonitor() {
-        self.performSegue(withIdentifier: "monitorSeg", sender: nil)
-//        self.loadMonitorScene()
+//        self.performSegue(withIdentifier: "monitorSeg", sender: nil)
+        self.loadMonitorScene()
     }
     
     @objc func placeVideoAnchor() {
@@ -321,7 +367,7 @@ class ViewController: UIViewController {
         coachingOverlay.activatesAutomatically = true
 //        coachingOverlay.setActive(true, animated: true)
         coachingOverlay.goal = .anyPlane
-        coachingOverlay.session = arView.session
+//        coachingOverlay.session = arView.session
         coachingOverlay.delegate = self
     }
     
@@ -329,19 +375,24 @@ class ViewController: UIViewController {
         self.setupStackView()
     }
     
+    lazy var bottomContraint: NSLayoutConstraint = {
+        let bottom = stackView.bottomAnchor.constraint(equalTo: self.arView.safeAreaLayoutGuide.bottomAnchor, constant: -10)
+        return bottom
+    }()
+    
     func setupStackView() {
+        stackView.alpha = 0
         stackView.addArrangedSubview(saveButton)
         stackView.addArrangedSubview(loadButton)
-        stackView.addArrangedSubview(resetButton)
-        stackView.addArrangedSubview(discoverButton)
-//        stackView.addArrangedSubview(placeBoxButton)
+//        stackView.addArrangedSubview(resetButton)
+//        stackView.addArrangedSubview(discoverButton)
+        stackView.addArrangedSubview(placeBoxButton)
         stackView.addArrangedSubview(placeMonitorButton)
         stackView.addArrangedSubview(placeDevButton)
         stackView.addArrangedSubview(placeVideoButton)
         self.arView.addSubview(stackView)
         let centerX = stackView.centerXAnchor.constraint(equalTo: self.arView.centerXAnchor)
-        let bottom = stackView.bottomAnchor.constraint(equalTo: self.arView.safeAreaLayoutGuide.bottomAnchor, constant: -50)
-        NSLayoutConstraint.activate([centerX, bottom])
+        NSLayoutConstraint.activate([centerX, self.bottomContraint])
     }
     
     lazy var stackView: UIStackView = {
@@ -354,11 +405,11 @@ class ViewController: UIViewController {
         return stack
     }()
     
-    private lazy var placeBoxButton: UIButton = {
+    private lazy var placeMonitorButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Box", for: [.normal])
-        button.addTarget(self, action: #selector(placeBox), for: .touchUpInside)
+        button.setTitle("Monitor", for: [.normal])
+        button.addTarget(self, action: #selector(placeMonitor), for: .touchUpInside)
         return button
     }()
     
@@ -370,14 +421,6 @@ class ViewController: UIViewController {
         return button
     }()
     
-    private lazy var placeMonitorButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Monitor", for: [.normal])
-        button.addTarget(self, action: #selector(placeMonitor), for: .touchUpInside)
-        return button
-    }()
-    
     private lazy var placeVideoButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -386,15 +429,15 @@ class ViewController: UIViewController {
         return button
     }()
     
-    private lazy var discoverButton: UIButton = {
+    private lazy var placeBoxButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        button.setTitle("Discover", for: [.normal])
-        button.addTarget(self, action: #selector(discover), for: .touchUpInside)
+        button.setTitle("Box", for: [.normal])
+        button.addTarget(self, action: #selector(placeBox), for: .touchUpInside)
         return button
     }()
     
+    //function buttons
     private lazy var saveButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -416,6 +459,15 @@ class ViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Reset", for: [.normal])
         button.addTarget(self, action: #selector(resetExperience), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var discoverButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        button.setTitle("Discover", for: [.normal])
+        button.addTarget(self, action: #selector(discover), for: .touchUpInside)
         return button
     }()
 }
