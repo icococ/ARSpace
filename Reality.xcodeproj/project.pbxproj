@@ -18,6 +18,7 @@
 		3CE4D67A25387A8C001FEE49 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE4D67925387A8C001FEE49 /* RoundedButton.swift */; };
 		B20146612539303E009DF205 /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B20146602539303E009DF205 /* video.mp4 */; };
 		B201466A253957E2009DF205 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2014668253957E2009DF205 /* Main.storyboard */; };
+		B2831D9B25512BE300C59778 /* DevViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2831D9A25512BE300C59778 /* DevViewController.swift */; };
 		B2D1B1D52547CF89007619E6 /* ExperienceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D1B1D42547CF89007619E6 /* ExperienceController.swift */; };
 		B2E20742254A6FD40011092F /* m.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B2E20741254A6FD40011092F /* m.jpg */; };
 		B2E20746254A8A340011092F /* pic_hd.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B2E20744254A8A340011092F /* pic_hd.jpg */; };
@@ -38,6 +39,7 @@
 		3CE4D67925387A8C001FEE49 /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		B20146602539303E009DF205 /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
 		B2014669253957E2009DF205 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B2831D9A25512BE300C59778 /* DevViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevViewController.swift; sourceTree = "<group>"; };
 		B2D1B1D42547CF89007619E6 /* ExperienceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceController.swift; sourceTree = "<group>"; };
 		B2E20741254A6FD40011092F /* m.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = m.jpg; sourceTree = "<group>"; };
 		B2E20744254A8A340011092F /* pic_hd.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pic_hd.jpg; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				3C20268C252DC3DA0029D701 /* AppDelegate.swift */,
 				3C20268E252DC3DA0029D701 /* ViewController.swift */,
 				3C3F84EF254EB89C0069171C /* MonitorViewController.swift */,
+				B2831D9A25512BE300C59778 /* DevViewController.swift */,
 				B2D1B1D42547CF89007619E6 /* ExperienceController.swift */,
 				B2014668253957E2009DF205 /* Main.storyboard */,
 				3C202690252DC3DA0029D701 /* Experience.rcproject */,
@@ -174,6 +177,7 @@
 				3C2026A2252DD6290029D701 /* SnapshotAnchor.swift in Sources */,
 				3C2026A5252DD9400029D701 /* Utilities.swift in Sources */,
 				3C3F84F0254EB89C0069171C /* MonitorViewController.swift in Sources */,
+				B2831D9B25512BE300C59778 /* DevViewController.swift in Sources */,
 				3C202691252DC3DA0029D701 /* Experience.rcproject in Sources */,
 				B2D1B1D52547CF89007619E6 /* ExperienceController.swift in Sources */,
 			);
