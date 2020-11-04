@@ -51,12 +51,10 @@ class ViewController: UIViewController {
     func runSetupModel() {
         self.arView.debugOptions = [.showWorldOrigin, .showAnchorOrigins]
 //        self.arView.session.delegate = self
-        self.arView.session.run(setupConfiguration)
+        self.arView.session.run(setupConfiguration, options: [.resetTracking, .removeExistingAnchors])
     }
     
     func runRestoreModel() {
-//        let arConfiguration = ARWorldTrackingConfiguration()
-//        arConfiguration.planeDetection = [.vertical, .horizontal]
         self.arView.debugOptions = []
         self.arView.session.delegate = self
         self.initARView()
@@ -132,7 +130,8 @@ class ViewController: UIViewController {
     }
     
     @objc func placeBox() {
-        self.navigationController?.popViewController(animated: true)
+        self.runSetupModel()
+//        self.navigationController?.popViewController(animated: true)
 //        self.loadBoxScene()
     }
     
@@ -379,7 +378,7 @@ class ViewController: UIViewController {
         coachingOverlay.activatesAutomatically = true
 //        coachingOverlay.setActive(true, animated: true)
         coachingOverlay.goal = .anyPlane
-//        coachingOverlay.session = arView.session
+        coachingOverlay.session = arView.session
         coachingOverlay.delegate = self
     }
     
@@ -395,7 +394,7 @@ class ViewController: UIViewController {
     func setupStackView() {
         stackView.alpha = 0
         stackView.addArrangedSubview(saveButton)
-        stackView.addArrangedSubview(loadButton)
+        stackView.addArrangedSubview(resetButton)
 //        stackView.addArrangedSubview(resetButton)
 //        stackView.addArrangedSubview(discoverButton)
         stackView.addArrangedSubview(placeBoxButton)
@@ -444,7 +443,7 @@ class ViewController: UIViewController {
     private lazy var placeBoxButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Box", for: [.normal])
+        button.setTitle("Back", for: [.normal])
         button.addTarget(self, action: #selector(placeBox), for: .touchUpInside)
         return button
     }()
