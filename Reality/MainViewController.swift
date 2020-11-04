@@ -32,7 +32,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.initARView()
         self.setupGestures()
         self.setupCoachingView()
         self.setupOverlayView()
@@ -50,14 +49,14 @@ class ViewController: UIViewController {
     
     func runSetupModel() {
         self.arView.debugOptions = [.showWorldOrigin, .showAnchorOrigins]
-//        self.arView.session.delegate = self
+        self.arView.session.delegate = nil
+        self.initARView()
         self.arView.session.run(setupConfiguration, options: [.resetTracking, .removeExistingAnchors])
     }
     
     func runRestoreModel() {
         self.arView.debugOptions = []
         self.arView.session.delegate = self
-        self.initARView()
         self.loadExperience(nil)
     }
     
@@ -311,6 +310,17 @@ class ViewController: UIViewController {
                 fatalError("Can't save map: \(error.localizedDescription)")
             }
             self.saveAnchorMap()
+            self.showAlert(title: "Setup Done", message: "Setup Done. Please restart the App")
+        }
+    }
+    
+    func clearSaved() {
+        do {
+            try FileManager.default.removeItem(at: self.mapSaveURL)
+            try FileManager.default.removeItem(at: self.anchorMapURL)
+        } catch {
+            debugPrint("Clear saved map: \(error.localizedDescription)")
+//            fatalError("Clear saved map: \(error.localizedDescription)")
         }
     }
     
@@ -371,7 +381,9 @@ class ViewController: UIViewController {
     
     @objc func resetExperience() {
         self.arView.scene.anchors.removeAll()
-        self.arView.session.run(setupConfiguration, options: [.resetTracking, .removeExistingAnchors])
+        self.clearSaved()
+        self.runSetupModel()
+//        self.arView.session.run(setupConfiguration, options: [.resetTracking, .removeExistingAnchors])
     }
     
     func setupCoachingView() {
@@ -393,8 +405,8 @@ class ViewController: UIViewController {
     
     func setupStackView() {
         stackView.alpha = 0
-        stackView.addArrangedSubview(saveButton)
         stackView.addArrangedSubview(resetButton)
+        stackView.addArrangedSubview(saveButton)
 //        stackView.addArrangedSubview(resetButton)
 //        stackView.addArrangedSubview(discoverButton)
         stackView.addArrangedSubview(placeBoxButton)
@@ -495,7 +507,7 @@ extension ViewController: ARSessionDelegate {
                 self.restoreAnchors(scene: scene, anchor: anchor)
             }
         }
-        self.arView.session.delegate = nil
+//        self.arView.session.delegate = nil
     }
     
     func session(_ session: ARSession, didUpdate frame: ARFrame) {

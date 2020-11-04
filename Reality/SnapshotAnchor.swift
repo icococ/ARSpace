@@ -57,5 +57,4 @@ class SnapshotAnchor: ARAnchor {
         super.encode(with: aCoder)
         aCoder.encode(imageData, forKey: "snapshot")
     }
-
 }

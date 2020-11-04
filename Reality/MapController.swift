@@ -8,7 +8,7 @@
 import ARKit
 
 struct MapController {
-    static let mapSaveURL: URL = {
+    private static let mapSaveURL: URL = {
         do {
             return try FileManager.default
                 .url(for: .documentDirectory,
@@ -21,15 +21,16 @@ struct MapController {
         }
     }()
     
-    
-    static let mapDataFromFile: Data? = {
+    private static let mapDataFromFile: Data? = {
         return try? Data(contentsOf: mapSaveURL)
     }()
     
-    static func loadSnapshot() -> UIImage? {
-        let worldMap: ARWorldMap = {
-            guard let data = mapDataFromFile
-                else { fatalError("Map data should already be verified to exist before Load button is enabled.") }
+    static func loadSnapshot() -> UIImage?  {
+        let worldMap: ARWorldMap? = {
+            guard let data = mapDataFromFile else {
+                return nil
+//                fatalError("Map data should already be verified to exist before Load button is enabled.")
+            }
             do {
                 guard let worldMap = try NSKeyedUnarchiver.unarchivedObject(ofClass: ARWorldMap.self, from: data)
                     else { fatalError("No ARWorldMap in archive.") }
@@ -40,7 +41,7 @@ struct MapController {
         }()
         
         // Display the snapshot image stored in the world map to aid user in relocalizing.
-        if let snapshotData = worldMap.snapshotAnchor?.imageData,
+        if let snapshotData = worldMap?.snapshotAnchor?.imageData,
             let snapshot = UIImage(data: snapshotData) {
             return snapshot
         } else {
@@ -49,6 +50,4 @@ struct MapController {
         }
     }
 }
-
-
 

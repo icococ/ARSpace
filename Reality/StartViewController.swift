@@ -14,7 +14,13 @@ class StartViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     
     lazy var snapshot: UIImage? = {
-        return MapController.loadSnapshot()
+        do {
+            return try MapController.loadSnapshot()
+        } catch {
+            return nil
+            
+        }
+//        return MapController.loadSnapshot()
     }()
     
     override func viewDidLoad() {
