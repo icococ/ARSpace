@@ -8,21 +8,21 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Start View Controller-->
         <scene sceneID="xAV-gv-32b">
             <objects>
-                <viewController id="Lba-tn-EQs" sceneMemberID="viewController">
+                <viewController id="Lba-tn-EQs" customClass="StartViewController" customModule="Reality" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qOs-o4-qO3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="brand" translatesAutoresizingMaskIntoConstraints="NO" id="PJJ-iJ-hgX">
-                                <rect key="frame" x="67.5" y="80" width="279" height="79"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pbrand" translatesAutoresizingMaskIntoConstraints="NO" id="PJJ-iJ-hgX">
+                                <rect key="frame" x="139.5" y="92" width="135" height="60"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to China ITM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t8q-oF-tdS">
-                                <rect key="frame" x="51.5" y="239" width="311" height="38.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="61" y="188" width="292" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1j-iq-EZD">
@@ -33,32 +33,45 @@
                                     <constraint firstAttribute="width" constant="260" id="gde-pa-5uc"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="Start to Explore">
+                                <state key="normal" title="Start To Explore">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="O1R-fj-jif"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="startSeg" id="O1R-fj-jif"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="board" translatesAutoresizingMaskIntoConstraints="NO" id="Tw3-IJ-Wie">
                                 <rect key="frame" x="67.5" y="308.5" width="279" height="279"/>
                             </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ffE-r5-pcW">
+                                <rect key="frame" x="78.5" y="319.5" width="257" height="257"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="257" id="Bcs-OB-SZl"/>
+                                    <constraint firstAttribute="width" constant="257" id="b7e-w3-PzO"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="o57-7R-T0O"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Tw3-IJ-Wie" firstAttribute="centerY" secondItem="qOs-o4-qO3" secondAttribute="centerY" id="5ew-PR-UyD"/>
                             <constraint firstItem="PJJ-iJ-hgX" firstAttribute="centerX" secondItem="qOs-o4-qO3" secondAttribute="centerX" id="9Rg-MQ-WdB"/>
                             <constraint firstItem="g1j-iq-EZD" firstAttribute="centerX" secondItem="qOs-o4-qO3" secondAttribute="centerX" id="9qE-h5-uGF"/>
                             <constraint firstItem="t8q-oF-tdS" firstAttribute="centerX" secondItem="qOs-o4-qO3" secondAttribute="centerX" id="QGi-TY-ybw"/>
-                            <constraint firstItem="PJJ-iJ-hgX" firstAttribute="top" secondItem="o57-7R-T0O" secondAttribute="top" constant="36" id="Wo9-Zb-Vt9"/>
-                            <constraint firstItem="t8q-oF-tdS" firstAttribute="top" secondItem="PJJ-iJ-hgX" secondAttribute="bottom" constant="80" id="ayr-MO-0Z6"/>
+                            <constraint firstItem="PJJ-iJ-hgX" firstAttribute="top" secondItem="o57-7R-T0O" secondAttribute="top" constant="48" id="Wo9-Zb-Vt9"/>
+                            <constraint firstItem="ffE-r5-pcW" firstAttribute="centerY" secondItem="Tw3-IJ-Wie" secondAttribute="centerY" id="Z14-jc-guC"/>
+                            <constraint firstItem="ffE-r5-pcW" firstAttribute="centerX" secondItem="Tw3-IJ-Wie" secondAttribute="centerX" id="aa4-Ib-nOO"/>
+                            <constraint firstItem="t8q-oF-tdS" firstAttribute="top" secondItem="PJJ-iJ-hgX" secondAttribute="bottom" constant="36" id="ayr-MO-0Z6"/>
                             <constraint firstItem="o57-7R-T0O" firstAttribute="bottom" secondItem="g1j-iq-EZD" secondAttribute="bottom" constant="48" id="g9d-tS-dV2"/>
                             <constraint firstItem="Tw3-IJ-Wie" firstAttribute="centerX" secondItem="qOs-o4-qO3" secondAttribute="centerX" id="jc2-mL-hHj"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="lXE-qJ-iAB"/>
                     <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="snapshotImage" destination="ffE-r5-pcW" id="Oju-pV-3KE"/>
+                        <outlet property="startButton" destination="g1j-iq-EZD" id="AvH-b3-gCp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0xe-xu-PDi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -360,7 +373,7 @@ Finally, the automation call solution go-live on May 6. Now critical issues will
     </scenes>
     <resources>
         <image name="board" width="279" height="279"/>
-        <image name="brand" width="279" height="79"/>
+        <image name="pbrand" width="135" height="60"/>
         <image name="pic_hd.jpg" width="3264" height="2448"/>
         <image name="pic_hh.jpg" width="4032" height="3024"/>
         <systemColor name="systemBackgroundColor">

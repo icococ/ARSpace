@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "path.png",
+      "filename" : "itmPositiveLarge.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "path@2x.png",
+      "filename" : "itmPositiveLarge@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "path@3x.png",
+      "filename" : "itmPositiveLarge@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

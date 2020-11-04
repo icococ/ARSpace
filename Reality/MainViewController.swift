@@ -18,7 +18,9 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var snapshotImage: UIImageView!
     
-    var defaultConfiguration: ARWorldTrackingConfiguration {
+    var model: String = "Setup" // "Restore"
+    
+    var setupConfiguration: ARWorldTrackingConfiguration {
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = [.vertical, .horizontal]
         configuration.environmentTexturing = .automatic
@@ -27,6 +29,39 @@ class ViewController: UIViewController {
     
     var eventStreams = [AnyCancellable]()
     var scene: String?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+//        self.initARView()
+        self.setupGestures()
+        self.setupCoachingView()
+        self.setupOverlayView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Load the "Box" scene from the "Experience" Reality File
+        if model == "Restore" {
+            self.runRestoreModel()
+        } else if model == "Setup" {
+            self.runSetupModel()
+        }
+    }
+    
+    func runSetupModel() {
+        self.arView.debugOptions = [.showWorldOrigin, .showAnchorOrigins]
+//        self.arView.session.delegate = self
+        self.arView.session.run(setupConfiguration)
+    }
+    
+    func runRestoreModel() {
+//        let arConfiguration = ARWorldTrackingConfiguration()
+//        arConfiguration.planeDetection = [.vertical, .horizontal]
+        self.arView.debugOptions = []
+        self.arView.session.delegate = self
+        self.initARView()
+        self.loadExperience(nil)
+    }
     
     @objc func singleTap(gesture: UITapGestureRecognizer) {
         let point = gesture.location(in: arView)
@@ -70,24 +105,6 @@ class ViewController: UIViewController {
             self.stackView.alpha = 0
             self.view.layoutIfNeeded()
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.initARView()
-        self.setupGestures()
-        self.setupCoachingView()
-        self.setupOverlayView()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        // Load the "Box" scene from the "Experience" Reality File
-        let arConfiguration = ARWorldTrackingConfiguration()
-        arConfiguration.planeDetection = [.vertical, .horizontal]
-        self.arView.debugOptions = [.showWorldOrigin, .showAnchorOrigins]
-        self.arView.session.delegate = self
-        self.arView.session.run(arConfiguration)
     }
     
     func initARView() {
@@ -323,7 +340,7 @@ class ViewController: UIViewController {
     }
     
     // - Tag: RunWithWorldMap
-    @IBAction func loadExperience(_ button: UIButton) {
+    @IBAction func loadExperience(_ button: UIButton?) {
         /// - Tag: ReadWorldMap
         let worldMap: ARWorldMap = {
             guard let data = mapDataFromFile
@@ -346,21 +363,16 @@ class ViewController: UIViewController {
         }
         // Remove the snapshot anchor from the world map since we do not need it in the scene.
         worldMap.anchors.removeAll(where: { $0 is SnapshotAnchor })
-        
-//        let configuration = self.defaultConfiguration // this app's standard world tracking settings
-//        configuration.initialWorldMap = worldMap
-        
+        self.loadAnchorMap()
         let arConfiguration = ARWorldTrackingConfiguration()
         arConfiguration.planeDetection = [.vertical, .horizontal]
         arConfiguration.initialWorldMap = worldMap
         self.arView.session.run(arConfiguration, options: [.resetTracking, .removeExistingAnchors])
-        
-        self.loadAnchorMap()
     }
     
     @objc func resetExperience() {
         self.arView.scene.anchors.removeAll()
-        self.arView.session.run(defaultConfiguration, options: [.resetTracking, .removeExistingAnchors])
+        self.arView.session.run(setupConfiguration, options: [.resetTracking, .removeExistingAnchors])
     }
     
     func setupCoachingView() {

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3C20268D252DC3DA0029D701 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C20268C252DC3DA0029D701 /* AppDelegate.swift */; };
-		3C20268F252DC3DA0029D701 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C20268E252DC3DA0029D701 /* ViewController.swift */; };
+		3C20268F252DC3DA0029D701 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C20268E252DC3DA0029D701 /* MainViewController.swift */; };
 		3C202691252DC3DA0029D701 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 3C202690252DC3DA0029D701 /* Experience.rcproject */; };
 		3C202696252DC3DC0029D701 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C202695252DC3DC0029D701 /* Assets.xcassets */; };
 		3C202699252DC3DC0029D701 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C202697252DC3DC0029D701 /* LaunchScreen.storyboard */; };
@@ -18,6 +18,8 @@
 		3CE4D67A25387A8C001FEE49 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE4D67925387A8C001FEE49 /* RoundedButton.swift */; };
 		B20146612539303E009DF205 /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B20146602539303E009DF205 /* video.mp4 */; };
 		B201466A253957E2009DF205 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2014668253957E2009DF205 /* Main.storyboard */; };
+		B213CD1D255271D00083923A /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B213CD1C255271D00083923A /* MapController.swift */; };
+		B213CD20255273F20083923A /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B213CD1F255273F20083923A /* StartViewController.swift */; };
 		B2831D9B25512BE300C59778 /* DevViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2831D9A25512BE300C59778 /* DevViewController.swift */; };
 		B2D1B1D52547CF89007619E6 /* ExperienceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D1B1D42547CF89007619E6 /* ExperienceController.swift */; };
 		B2E20742254A6FD40011092F /* m.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B2E20741254A6FD40011092F /* m.jpg */; };
@@ -28,7 +30,7 @@
 /* Begin PBXFileReference section */
 		3C202689252DC3DA0029D701 /* Reality.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reality.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C20268C252DC3DA0029D701 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3C20268E252DC3DA0029D701 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3C20268E252DC3DA0029D701 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3C202690252DC3DA0029D701 /* Experience.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = Experience.rcproject; sourceTree = "<group>"; };
 		3C202695252DC3DC0029D701 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C202698252DC3DC0029D701 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -39,6 +41,8 @@
 		3CE4D67925387A8C001FEE49 /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		B20146602539303E009DF205 /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
 		B2014669253957E2009DF205 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B213CD1C255271D00083923A /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
+		B213CD1F255273F20083923A /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		B2831D9A25512BE300C59778 /* DevViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevViewController.swift; sourceTree = "<group>"; };
 		B2D1B1D42547CF89007619E6 /* ExperienceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceController.swift; sourceTree = "<group>"; };
 		B2E20741254A6FD40011092F /* m.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = m.jpg; sourceTree = "<group>"; };
@@ -84,7 +88,9 @@
 				3C2026A4252DD9400029D701 /* Utilities.swift */,
 				3C2026A1252DD6290029D701 /* SnapshotAnchor.swift */,
 				3C20268C252DC3DA0029D701 /* AppDelegate.swift */,
-				3C20268E252DC3DA0029D701 /* ViewController.swift */,
+				B213CD1C255271D00083923A /* MapController.swift */,
+				B213CD1F255273F20083923A /* StartViewController.swift */,
+				3C20268E252DC3DA0029D701 /* MainViewController.swift */,
 				3C3F84EF254EB89C0069171C /* MonitorViewController.swift */,
 				B2831D9A25512BE300C59778 /* DevViewController.swift */,
 				B2D1B1D42547CF89007619E6 /* ExperienceController.swift */,
@@ -171,14 +177,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C20268F252DC3DA0029D701 /* ViewController.swift in Sources */,
+				3C20268F252DC3DA0029D701 /* MainViewController.swift in Sources */,
 				3CE4D67A25387A8C001FEE49 /* RoundedButton.swift in Sources */,
 				3C20268D252DC3DA0029D701 /* AppDelegate.swift in Sources */,
 				3C2026A2252DD6290029D701 /* SnapshotAnchor.swift in Sources */,
 				3C2026A5252DD9400029D701 /* Utilities.swift in Sources */,
+				B213CD20255273F20083923A /* StartViewController.swift in Sources */,
 				3C3F84F0254EB89C0069171C /* MonitorViewController.swift in Sources */,
 				B2831D9B25512BE300C59778 /* DevViewController.swift in Sources */,
 				3C202691252DC3DA0029D701 /* Experience.rcproject in Sources */,
+				B213CD1D255271D00083923A /* MapController.swift in Sources */,
 				B2D1B1D52547CF89007619E6 /* ExperienceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
