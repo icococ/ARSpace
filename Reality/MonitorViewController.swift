@@ -30,7 +30,7 @@ class MonitorViewController: UIViewController {
                 // 2a) Assign self as delegate
                 playerViewController.delegate = self
                 // 2b) Create player for video
-                if let pathToVideo = Bundle.main.path(forResource: "video", ofType: "mp4") {
+                if let pathToVideo = Bundle.main.path(forResource: "Integrated Monitoring Platform", ofType: "MOV") {
                     let videoURL = URL(fileURLWithPath: pathToVideo)
                     let playerItem = AVPlayerItem(url: videoURL)
                     // Note that we seek to the resume time *before* giving the player view controller the player.

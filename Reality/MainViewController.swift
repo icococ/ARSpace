@@ -237,18 +237,6 @@ class ViewController: UIViewController {
         })
     }
     
-    func loadWall() {
-        Experience.loadWallAsync(completion: { [weak self](result) in
-            switch result {
-            case .success(let wall):
-                guard let self = self else { return }
-                self.arView.scene.anchors.append(wall)
-            case .failure(let error):
-                print("Unable to load the game with error: \(error.localizedDescription)")
-            }
-        })
-    }
-    
     lazy var anchorMap: [UUID: String] = {
         return [:]
     }()
@@ -381,8 +369,10 @@ class ViewController: UIViewController {
     
     @objc func resetExperience() {
         self.arView.scene.anchors.removeAll()
+        self.snapshotImage.alpha = 0
         self.clearSaved()
         self.runSetupModel()
+        self.showAlert(title: "Anchor Removed", message: "Better to restart the app to re-setup")
 //        self.arView.session.run(setupConfiguration, options: [.resetTracking, .removeExistingAnchors])
     }
     
@@ -507,7 +497,7 @@ extension ViewController: ARSessionDelegate {
                 self.restoreAnchors(scene: scene, anchor: anchor)
             }
         }
-//        self.arView.session.delegate = nil
+        self.arView.session.delegate = nil
     }
     
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
